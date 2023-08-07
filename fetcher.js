@@ -18,15 +18,16 @@ const getHTML = (arg) => {
     // checks if the file exists and asks to overwrite if it does
     if (fs.existsSync(file)) {
       rl.question('File already exists. Would you like to overwrite it? Y/N ', (answer) => {
-        if (answer === 'Y') {
+        if (answer.toUpperCase() === 'Y') {
           writeToFile(file, body);
         }
+        rl.close();
       });
     } else {
       writeToFile(file, body);
     }
   });
-  rl.close();
+
 };
 
 const writeToFile = (file, content) => {
